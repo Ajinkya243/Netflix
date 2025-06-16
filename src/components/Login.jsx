@@ -1,13 +1,15 @@
 import { useMemo, useRef, useState } from "react"
 import Header from "./Header"
 import { checkValidData } from "../utils/validate";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from "../utils/firebase";
 
 const Login = () => {
     const[isSignIn,setIsSignIn]=useState(true);
     const[errorMessage,setErrorMessage]=useState("");
     const user=useMemo(()=>({
-        email:"ajinkya@test.com",
-        password:"ajinkya"
+        email:"ajinkya@gmail.com",
+        password:"ajinkya007"
     }),[])
     const email=useRef(null);
     const password=useRef(null);
@@ -20,7 +22,33 @@ const Login = () => {
        console.log(email,password);
        const response=checkValidData(email.current.value,password.current.value)
        setErrorMessage(response);
-       console.log(response);
+       if(response) return;
+
+       if(!isSignIn){
+        createUserWithEmailAndPassword(auth, email.current.value,password.current.value)
+        .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        })
+        .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(`${errorCode} ${errorMessage}`)
+        });
+       }
+       else{
+        signInWithEmailAndPassword(auth, email.current.value,password.current.value)
+        .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        })
+        .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(`${errorCode} ${errorMessage}`)
+        });
+       }
+
     }
     const handleCredentials=(e)=>{
         e.preventDefault();
