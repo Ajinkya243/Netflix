@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .scrollbar-hover::-webkit-scrollbar {
+    height: 0px;
+  }
+
+  .scrollbar-hover:hover::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .scrollbar-hover {
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hover:hover {
+    scrollbar-width: thin;
+  }
+}

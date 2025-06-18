@@ -1,13 +1,23 @@
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies"
+import usePopularMovies from "../hooks/usePopularMovies";
+import useTopRatedMovie from "../hooks/useTopRatedMovie";
+import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import Header from "./Header"
+import Maincontainer from "./Maincontainer";
+import Secondarycontainer from "./Secondarycontainer";
 
 
 const Browse = () => {
   useNowPlayingMovies();
+  usePopularMovies();
+  useTopRatedMovie();
+  useUpcomingMovies();
   return (
-    <div>
+    <div className="overflow-hidden relative">
         <Header/>
-        Browse</div>
+        <Maincontainer/>
+        <Secondarycontainer/>
+    </div>
   )
 }
 
