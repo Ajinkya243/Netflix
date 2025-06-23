@@ -6,7 +6,7 @@ const Secondarycontainer = () => {
   const{nowPlayingMovies,popularMovies,topRatedMovies,upComingMovies}=useSelector(state=>state.movies);
   return (
     <>
-    {nowPlayingMovies.length &&
+    {nowPlayingMovies.length ?
     <div className='bg-black'>
     <div className='-mt-52 z-10 relative pl-12'>
       <MovieList title={"Now Playing"} movies={nowPlayingMovies}/>
@@ -14,7 +14,7 @@ const Secondarycontainer = () => {
       <MovieList title={"Top Rated"} movies={topRatedMovies} />
       <MovieList title={"Upcoming"} movies={upComingMovies} />
     </div>
-    </div>}
+    </div>:null}
     </>
   )
 }
