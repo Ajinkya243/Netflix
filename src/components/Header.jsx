@@ -45,7 +45,7 @@ const Header = () => {
         return ()=>unsubscribe();
     },[])
   return (
-    <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-50 w-full flex justify-between items-center">
+    <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-50 w-full flex flex-col md:flex-row  items-center md:justify-between">
         <img className="w-44 cursor-pointer" src={LOGO} alt="netflix logo" onClick={handleNavigate}/>
         {user?.email&&<div className="flex gap-2 items-center">
           {showGptSearch && <select name="" id="" className="bg-gray-900 text-white" onChange={handleLanguageChange} ref={lang}>
@@ -53,7 +53,7 @@ const Header = () => {
               <option key={el.identifier} value={el.identifier}>{el.name}</option>
             ))}
           </select>}
-          <button className="py-2 px-4 m-2 bg-purple-800 text-white rounded-lg" onClick={handleGptSearch}>{showGptSearch?"Home" :"GPT Search"} </button>
+          <button className="py-2 px-4 m-2 bg-purple-800 text-white rounded-lg" onClick={handleGptSearch}>{showGptSearch?"Home" :"Search Movie"} </button>
             <img src={USER_Avatar}alt="usericon" />
             <button className="font-bold text-white" onClick={handleSignOut}>{user.displayName}(Sign Out)</button>
         </div>}
