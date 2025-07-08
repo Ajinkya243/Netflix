@@ -26,7 +26,6 @@ const Login = () => {
     const handleButtonClick=(e)=>{
         e.preventDefault();
        //checkValidData(); 
-       console.log(email,password);
        const response=checkValidData(email.current.value,password.current.value)
        setErrorMessage(response);
        if(response) return;
@@ -35,7 +34,6 @@ const Login = () => {
         createUserWithEmailAndPassword(auth, email.current.value,password.current.value)
         .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
         updateProfile(user, {
         displayName: name.current.value, photoURL: ""
         }).then(() => {
@@ -86,7 +84,7 @@ const Login = () => {
                 {errorMessage&&<p className="text-red-700 text-xl">{errorMessage}</p>}
                 <button className="p-3 my-5 bg-red-600 w-full rounded-lg" 
                 onClick={handleButtonClick}>{isSignIn?"Sign In":"Sign Up"}</button>
-                {isSignIn&&<button className="p-3 my-2 bg-blue-600 w-full rounded-lg" onClick={handleCredentials}>Test Credebtials</button>}
+                {isSignIn&&<button className="p-3 my-2 bg-blue-600 w-full rounded-lg" onClick={handleCredentials}>Test Credentials</button>}
                 <p className="cursor-pointer" onClick={toggleSignIn}>{isSignIn?"New to Netflix? Sign Up Now":"Already registered? Sign In now"}</p>
             </form>
         </div>
